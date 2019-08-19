@@ -15,4 +15,4 @@
 #   Convolution
 #   OpenCV UI
 
-# Tutorial appears to use Anaconda, maybe RIP, but should probably learn that too.
+# Tutorial uses spyder, woo.
