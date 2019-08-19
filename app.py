@@ -35,11 +35,21 @@ cv2.createTrackbar("Filters", app_name, 0, num_filters, dummy)
 # MAIN UI LOOP
 #
 while True:
-    # TODO: Read all trackbar values
     grayscale = cv2.getTrackbarPos("Grayscale", app_name)
+    contrast = cv2.getTrackbarPos("Contrast", app_name)
+    brightness = cv2.getTrackbarPos("Brightness", app_name)
+    filters = cv2.getTrackbarPos("Filters", app_name)
     # TODO: Apply filters
     # TODO: Apply brightness/contrast
+    # addWeighted needs a second useless image, for some reason.
+    # The way this is working is we're adding the original to a dummy, then scaling it; its the
+    # scaling that does the brightness, so no need for a second image, but the method in cv2 still
+    # requires it.
+    # Remember to take into account brightness starting at 50 on the tackbar.
+    color_modified = cv2.addWeighted(color_original, contrast, np.zeros_like(color_original), 0, brightness - 50)
+    gray_modified = cv2.addWeighted(gray_original, contrast, np.zeros_like(gray_original), 0, brightness - 50)
     # TODO: Buttons to open/save/close
+
     # wait for keypress, this seems like a shit way, just use buttons at this point
     key = cv2.waitKey(10)
     if key == ord('q'):
@@ -50,9 +60,9 @@ while True:
 
     # Show image
     if grayscale:
-        cv2.imshow(app_name, gray_original)
+        cv2.imshow(app_name, gray_modified)
     else:
-        cv2.imshow(app_name, color_original)
+        cv2.imshow(app_name, color_modified)
         
 # window cleanup
 cv2.destroyAllWindows()
