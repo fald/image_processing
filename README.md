@@ -16,3 +16,7 @@
 #   OpenCV UI
 
 # Tutorial uses spyder, woo.
+# Did some convolution examples; no code to show for it, but had to do with code, so its being marked for my git spree >=(
+
+# Ex: Image = [[0,0,0], [0,0,0], [255,255,255], [255,255,255]], Kernel=[[1,2,1],[0,0,0],[-1,-2,-1]], pad image for edges, apply kernel
+# end up with [[0,0,0], [-1020, -1020, -1020], [-1020, -1020, -1020], [0,0,0]] => hard edge in middle
