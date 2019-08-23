@@ -7,7 +7,7 @@ app_name = "m'app"
 file_name = "test.png"
 
 def dummy(value):
-    print(value)
+    pass
 
 # TODO: Change this from trackbar. Maybe 1 trackbar per filter, I dunno. Or subwindows with more options.
 # This is a stupid way to do it, but tutorials.
@@ -18,8 +18,8 @@ identity_kernel = np.array([[0, 0, 0], [0, 1, 0], [0, 0, 0]])
 sharpen_kernel = np.array([[0, -1, 0], [-1, 5, -1], [0, -1, 0]])
 gaussian_kernel_1 = cv2.getGaussianKernel(3, 0)
 gaussian_kernel_2 = cv2.getGaussianKernel(9, 0)
-# Averaging kernel, this is actually good for me!
-box_size = 55
+# Averaging kernel, this is actually good for me...maybe. These filters are actually fairly bad.
+box_size = 5
 box_kernel = np.ones((box_size, box_size), dtype=np.float32) / float(box_size ** 2)
 
 kernels = [identity_kernel, sharpen_kernel, gaussian_kernel_1, gaussian_kernel_2, box_kernel]
@@ -49,8 +49,8 @@ while True:
     grayscale = cv2.getTrackbarPos("Grayscale", app_name)
     contrast = cv2.getTrackbarPos("Contrast", app_name)
     brightness = cv2.getTrackbarPos("Brightness", app_name)
-    filters = cv2.getTrackbarPos("Filters", app_name)
-    kernel_index = cv2.getTrackbarPos('Filter', app_name)
+    # filters = cv2.getTrackbarPos("Filters", app_name)
+    kernel_index = cv2.getTrackbarPos('Filters', app_name)
     # TODO: Apply filters
     color_modified = cv2.filter2D(color_original, -1, kernels[kernel_index])
     gray_modified = cv2.filter2D(gray_original, -1, kernels[kernel_index])
