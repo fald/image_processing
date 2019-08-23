@@ -6,6 +6,9 @@ import cv2
 app_name = "m'app"
 file_name = "test.png"
 
+# Save count; should probably do it so it saves based on active filters and their values, though...but following tutorial for now.
+count = 1
+
 def dummy(value):
     pass
 
@@ -19,7 +22,7 @@ sharpen_kernel = np.array([[0, -1, 0], [-1, 5, -1], [0, -1, 0]])
 gaussian_kernel_1 = cv2.getGaussianKernel(3, 0)
 gaussian_kernel_2 = cv2.getGaussianKernel(9, 0)
 # Averaging kernel, this is actually good for me...maybe. These filters are actually fairly bad.
-box_size = 5
+box_size = 715
 box_kernel = np.ones((box_size, box_size), dtype=np.float32) / float(box_size ** 2)
 
 kernels = [identity_kernel, sharpen_kernel, gaussian_kernel_1, gaussian_kernel_2, box_kernel]
@@ -70,8 +73,9 @@ while True:
     if key == ord('q'):
         break
     elif key == ord('s'):
-        # TODO: Save image
-        pass
+        save = gray_modified if grayscale else color_modified
+        cv2.imwrite('output-{}.png'.format(count), save)
+        count += 1
 
     # Show image
     if grayscale:
