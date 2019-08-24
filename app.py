@@ -31,10 +31,15 @@ edge_detection_1 = np.array([[1, 0, -1], [0, 0, 0], [-1, 0, 1]])
 edge_detection_2 = np.array([[0, 1, 0], [1, -4, 1], [0, 1, 0]])
 edge_detection_3 = np.array([[-1, -1, -1], [-1, 8, -1], [-1, -1, -1]])
 
+# From somewhere, I don't quite remember.
+vertical_edge = np.array([[1, 0, -1], [2, 0, -2], [1, 0, -1]])
+horizontal_edge = np.array([[1, 2, 1], [0, 0, 0], [-1, -2, -1]])
+
 kernels = [
     identity_kernel, sharpen_kernel, gaussian_kernel_1,
     gaussian_kernel_2, box_kernel, edge_detection_1, 
-    edge_detection_2, edge_detection_3
+    edge_detection_2, edge_detection_3, vertical_edge,
+    horizontal_edge
     ]
 
 # Read in an  image, then make it grayscale
