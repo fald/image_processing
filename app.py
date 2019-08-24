@@ -4,7 +4,8 @@ import cv2
 # TODO: Separate stuff to be modular, because I'm fuckin' great at that shit, ey.
 
 app_name = "m'app"
-file_name = "test.png"
+# file_name = "test.png"
+file_name = "test.jpg"
 
 # Save count; should probably do it so it saves based on active filters and their values, though...but following tutorial for now.
 count = 1
@@ -25,7 +26,16 @@ gaussian_kernel_2 = cv2.getGaussianKernel(9, 0)
 box_size = 715
 box_kernel = np.ones((box_size, box_size), dtype=np.float32) / float(box_size ** 2)
 
-kernels = [identity_kernel, sharpen_kernel, gaussian_kernel_1, gaussian_kernel_2, box_kernel]
+# New'nes from wikipedia
+edge_detection_1 = np.array([[1, 0, -1], [0, 0, 0], [-1, 0, 1]])
+edge_detection_2 = np.array([[0, 1, 0], [1, -4, 1], [0, 1, 0]])
+edge_detection_3 = np.array([[-1, -1, -1], [-1, 8, -1], [-1, -1, -1]])
+
+kernels = [
+    identity_kernel, sharpen_kernel, gaussian_kernel_1,
+    gaussian_kernel_2, box_kernel, edge_detection_1, 
+    edge_detection_2, edge_detection_3
+    ]
 
 # Read in an  image, then make it grayscale
 # TODO: File selecting
