@@ -23,7 +23,8 @@ sharpen_kernel = np.array([[0, -1, 0], [-1, 5, -1], [0, -1, 0]])
 gaussian_kernel_1 = cv2.getGaussianKernel(3, 0)
 gaussian_kernel_2 = cv2.getGaussianKernel(9, 0)
 # Averaging kernel, this is actually good for me...maybe. These filters are actually fairly bad.
-box_size = 715
+# Nah, need to have it translated to a smaller space to pixelate it
+box_size = 55
 box_kernel = np.ones((box_size, box_size), dtype=np.float32) / float(box_size ** 2)
 
 # New'nes from wikipedia
